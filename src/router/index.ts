@@ -13,10 +13,11 @@ const routes = [
     name: 'Post',
     component: PostView,
   },
+  { path: '/:catchAll(.*)', redirect: '/' }
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(), // Используем hash history для GitHub Pages
+  history: createWebHashHistory('/proj-vite-v3/'), // Используем hash history для GitHub Pages
   routes,
 });
 

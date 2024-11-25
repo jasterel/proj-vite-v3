@@ -1,19 +1,22 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { resolve } from 'path';
 
-// Аналог __dirname
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// https://vitejs.dev/config/
 export default defineConfig({
-  base: '/proj-vite-v3/',
+  base: '/proj-vite-v3/', // Base URL for the app
+  server: {
+    port: 3000 // Development server port
+  },
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
+      '@': resolve(__dirname, 'src') // Alias for src directory
+    }
   },
+  build: {
+    outDir: 'dist', // Output directory
+    rollupOptions: {
+      input: resolve(__dirname, 'index.html') // Entry point for the build
+    }
+  }
 });
